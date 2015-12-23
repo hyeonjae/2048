@@ -13,7 +13,6 @@ class Game():
       for x in row:
         print "%3d" % x,
       print
-    pass
 
   def right(self):
     for y in xrange(4):
@@ -29,6 +28,7 @@ class Game():
           elif self.board[y][p] == self.board[y][q]:
             self.board[y][p], self.board[y][q] = self.board[y][p] + self.board[y][q], 0
             break
+
   def left(self):
     for y in xrange(4):
       for p in range(4):
@@ -42,19 +42,23 @@ class Game():
             break
           elif self.board[y][p] == self.board[y][q]:
             self.board[y][p], self.board[y][q] = self.board[y][p] + self.board[y][q], 0
+            break
+
   def down(self):
-     for x in xrange(4):
-       for p in range(4)[::-1]:
-         for q in range(0, p)[::-1]:
-           if self.board[p][x] == 0 and self.board[q][x] == 0:
-             continue
-           if self.board[p][x] > 0 and self.board[q][x] == 0:
-             continue
-           elif self.board[p][x] == 0 and self.board[q][x] > 0:
-             self.board[p][x], self.board[q][x] = self.board[q][x], self.board[p][x]
-             break
-           elif self.board[p][x] == self.board[q][x]:
-             self.board[p][x], self.board[q][x] = self.board[p][x] + self.board[q][x], 0
+    for x in xrange(4):
+      for p in range(4)[::-1]:
+        for q in range(0, p)[::-1]:
+          if self.board[p][x] == 0 and self.board[q][x] == 0:
+            continue
+          if self.board[p][x] > 0 and self.board[q][x] == 0:
+            continue
+          elif self.board[p][x] == 0 and self.board[q][x] > 0:
+            self.board[p][x], self.board[q][x] = self.board[q][x], self.board[p][x]
+            break
+          elif self.board[p][x] == self.board[q][x]:
+            self.board[p][x], self.board[q][x] = self.board[p][x] + self.board[q][x], 0
+            break
+
   def up(self):
     for x in xrange(4):
       for p in range(4):
@@ -68,6 +72,8 @@ class Game():
             break
           elif self.board[p][x] == self.board[q][x]:
             self.board[p][x], self.board[q][x] = self.board[p][x] + self.board[q][x], 0
+            break
+
   def generate(self):
     blank = []
     for y in xrange(4):
@@ -78,7 +84,6 @@ class Game():
       x, y = random.choice(blank)
       self.board[y][x] = 2
     pass
-
 
 if __name__ == '__main__':
   print 'main()'
